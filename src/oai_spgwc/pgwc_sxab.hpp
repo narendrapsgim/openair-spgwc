@@ -72,7 +72,10 @@ class pgwc_sxab : public pfcp::pfcp_l4_stack {
 
   void send_sx_msg(itti_sxab_heartbeat_request& s){};
   void send_sx_msg(itti_sxab_heartbeat_response& s){};
-  void send_sx_msg(itti_sxab_association_setup_request& s){};
+  // void send_sx_msg(itti_sxab_association_setup_request& s){};
+
+  void send_sx_msg(itti_sxab_association_setup_request& s);
+
   void send_sx_msg(itti_sxab_association_setup_response& s);
   void send_sx_msg(itti_sxab_association_update_request& s){};
   void send_sx_msg(itti_sxab_association_update_response& s){};
@@ -101,6 +104,10 @@ class pgwc_sxab : public pfcp::pfcp_l4_stack {
       pfcp::pfcp_msg& msg, const endpoint& r_endpoint);
   void handle_receive_association_setup_request(
       pfcp::pfcp_msg& msg, const endpoint& r_endpoint);
+
+  void handle_receive_association_setup_response(
+      pfcp::pfcp_msg& msg, const endpoint& r_endpoint);
+
 
   void handle_receive_session_establishment_response(
       pfcp::pfcp_msg& msg, const endpoint& r_endpoint);

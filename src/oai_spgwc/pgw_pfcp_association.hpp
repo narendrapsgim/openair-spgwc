@@ -157,6 +157,7 @@ class pfcp_associations {
       pfcp::node_id_t& node_id,
       pfcp::recovery_time_stamp_t& recovery_time_stamp,
       pfcp::up_function_features_s& function_features,
+      pfcp::enterprise_specific_s& enterprise_specific,
       bool& restore_sx_sessions);
   bool get_association(
       const pfcp::node_id_t& node_id,
@@ -177,6 +178,8 @@ class pfcp_associations {
 
   bool select_up_node(
       pfcp::node_id_t& node_id, const int node_selection_criteria);
+  bool add_peer_candidate_node(const pfcp::node_id_t &node_id);
+  
 };
 }  // namespace pgwc
 
