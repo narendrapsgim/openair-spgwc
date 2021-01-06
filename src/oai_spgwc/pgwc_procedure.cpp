@@ -160,7 +160,7 @@ int session_establishment_procedure::run(
       destination_interface.interface_value =
         pfcp::INTERFACE_VALUE_SGI_LAN_N6_LAN;  // ACCESS is for downlink, SGi-LAN for uplink
     pfcp::network_instance_t         network_instance = {};  // mandatory for travelping
-    network_instance = {"sgi1"};
+    network_instance.network_instance = {"sgi1"};
     forwarding_parameters.set(destination_interface);
     forwarding_parameters.set(network_instance);
 
@@ -491,7 +491,7 @@ int modify_bearer_procedure::run(
         // pdi IEs
         pfcp::source_interface_t source_interface = {};
         // pfcp::fteid_t                    local_fteid = {};
-        // pfcp::network_instance_t         network_instance = {};
+        pfcp::network_instance_t         network_instance = {};
         pfcp::ue_ip_address_t ue_ip_address = {};
         // pfcp::traffic_endpoint_id_t      traffic_endpoint_id = {};
         pfcp::sdf_filter_t sdf_filter         = {};
@@ -503,7 +503,7 @@ int modify_bearer_procedure::run(
         // pfcp::framed_ipv6_route_t        framed_ipv6_route = {};
         // source_interface.interface_value = pfcp::INTERFACE_VALUE_CORE;
         source_interface.interface_value = pfcp::INTERFACE_VALUE_SGI_LAN_N6_LAN;
-
+        network_instance.network_instance = {"sgi1"};
 
         // local_fteid.from_core_fteid(peb.sgw_fteid_s5_s8_up);
         if (ppc->ipv4) {
@@ -522,6 +522,7 @@ int modify_bearer_procedure::run(
         precedence.precedence = peb.eps_bearer_qos.pl;
 
         pdi.set(source_interface);
+	pdi.set(network_instance);
         // pdi.set(local_fteid);
         pdi.set(ue_ip_address);
 
