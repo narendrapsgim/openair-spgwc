@@ -160,7 +160,7 @@ int session_establishment_procedure::run(
       destination_interface.interface_value =
         pfcp::INTERFACE_VALUE_SGI_LAN_N6_LAN;  // ACCESS is for downlink, SGi-LAN for uplink
     pfcp::network_instance_t         network_instance = {};  // mandatory for travelping
-    network_instance.network_instance = {"sgi1"};
+    network_instance.network_instance = {"sgi"};
     forwarding_parameters.set(destination_interface);
     forwarding_parameters.set(network_instance);
 
@@ -503,11 +503,12 @@ int modify_bearer_procedure::run(
         // pfcp::framed_ipv6_route_t        framed_ipv6_route = {};
         // source_interface.interface_value = pfcp::INTERFACE_VALUE_CORE;
         source_interface.interface_value = pfcp::INTERFACE_VALUE_SGI_LAN_N6_LAN;
-        network_instance.network_instance = {"sgi1"};
+        network_instance.network_instance = {"sgi"};
 
         // local_fteid.from_core_fteid(peb.sgw_fteid_s5_s8_up);
         if (ppc->ipv4) {
           ue_ip_address.v4                  = 1;
+          ue_ip_address.sd                  = 1;
           ue_ip_address.ipv4_address.s_addr = ppc->ipv4_address.s_addr;
         }
         if (ppc->ipv6) {
